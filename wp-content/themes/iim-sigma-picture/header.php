@@ -39,8 +39,8 @@ if (ENV === 'DEV') {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- Styles -->
-    <?php $version = filemtime(get_theme_root() . '/' . get_template() . '/style/build/main.css'); ?>
-    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style/build/main.css?v=<?= $version; ?>">
+    <?php $version = filemtime(get_theme_root() . '/' . get_template() . '/style/main.css'); ?>
+    <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style/main.css?v=<?= $version; ?>">
 
     <!--[if lt IE 9]>
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/html5shiv.min.js"></script>

@@ -1,12 +1,14 @@
-@import 'quark/colors';
+$primary-color : #282828;
+$secondary-color: #fafafa;
+$tertiary-color: #f36;
 
-/* URL du logo à modifier */
+/** PAGE DE CONNEXION **/
 
-$logo-url : '../../assets/favicon/favicon-96x96.png';
+/* URL du logo a modifier */
+
+$logo-url : '../assets/favicon/favicon-96x96.png';
 
 // _________________________________________________
-
-/* Variables diverses à modifier en fonction du site */
 
 // Background
 
@@ -15,9 +17,9 @@ $background-color: $secondary-color;
 // Formulaire
 
 // Form box
-$border-style-formulaire: 1px solid $tertiary-color; // entrer les paramètres (ex : 1px solid $base-color)
-$border-radius-formulaire: 0; // changer la valeur (ex : 2px)
-$box-shadow-formulaire: none; // entrer les paramètres (ex : 0px 0px 8px -2px #00A886)
+$border-style-formulaire: 1px solid $tertiary-color;
+$border-radius-formulaire: 0;
+$box-shadow-formulaire: none;
 
 // Input
 $border-style-input: 1px solid $primary-color;
@@ -59,7 +61,7 @@ body {
 
 // scss-lint:disable all
 #login {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 // scss-lint:enable all
 
