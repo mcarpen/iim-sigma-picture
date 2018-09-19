@@ -1,0 +1,41 @@
+*.log
+*.tmp
+*.sublime-project
+*.sublime-workspace
+_ai-cache
+
+
+#### Directory build
+!**/assets/img/*
+**/assets/img/src
+# TODO
+
+
+#### Directory : dependancies
+node_modules/
+bower_components/
+/wp-content/themes/iim-sigma-picture/vendor/
+
+
+#### Dot Directory
+.idea/
+.sass-cache/
+
+
+#### Dot file
+.DS_Store
+
+
+#### WordPress
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/wp-cache-config.php
