@@ -29,7 +29,6 @@ if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
 }
 
 include($templatepath . '/function/all.php');
-include($templatepath . '/function/acf.php');
 
 
 /**
