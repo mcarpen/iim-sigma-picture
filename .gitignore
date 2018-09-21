@@ -20,6 +20,7 @@ bower_components/
 #### Dot Directory
 .idea/
 .sass-cache/
+/wp-content/uploader/files/*
 
 
 #### Dot file

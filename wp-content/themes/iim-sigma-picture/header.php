@@ -1,6 +1,13 @@
 <?php
+if (is_front_page() && is_user_logged_in()) {
+    wp_redirect(get_the_permalink(get_page_by_path('dashboard')));
+    exit;
+} elseif( ! is_front_page() && ! is_user_logged_in()) {
+    wp_redirect(home_url());
+    exit;
+}
 if (ENV === 'DEV') {
-    require _DIR_ . '/vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
 }
 ?>
 <!DOCTYPE html>
@@ -37,7 +44,8 @@ if (ENV === 'DEV') {
         <meta name="msapplication-TileImage" content="<?php bloginfo('template_directory'); ?>/assets/favicon/mstile-144x144.png">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.16.2/all.fine-uploader/fine-uploader-new.min.css">
 
         <link href="<?php bloginfo('template_directory'); ?>/style/matt.css" rel="stylesheet">
 
@@ -50,7 +58,35 @@ if (ENV === 'DEV') {
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/respond.min.js"></script>
 <![endif]-->
 
-<?php wp_head(); ?>
+    <style>
+        #trigger-upload {
+            color: white;
+            background-color: #00ABC7;
+            font-size: 14px;
+            padding: 7px 20px;
+            background-image: none;
+            display: none;
+        }
+
+        #fine-uploader-manual-trigger .qq-upload-button {
+            width: 220px;
+            margin-right: 15px;
+        }
+
+        #fine-uploader-manual-trigger .buttons {
+            width: 36%;
+        }
+
+        #fine-uploader-manual-trigger .qq-uploader {
+            overflow-x: hidden;
+        }
+
+        #fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
+            width: 60%;
+        }
+    </style>
+
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
