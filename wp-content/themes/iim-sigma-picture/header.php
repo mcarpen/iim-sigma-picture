@@ -12,51 +12,51 @@ if (ENV === 'DEV') {
 ?>
 <!DOCTYPE html>
 <!--[if IE 7]>
-    <html class="ie ie7" <?php language_attributes(); ?>> <![endif]-->
+<html class="ie ie7" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 8]>
-    <html class="ie ie8" <?php language_attributes(); ?>><![endif]-->
-    <!--[if !(IE 7) | !(IE 8)  ]><!-->
-    <html <?php language_attributes(); ?>><!--<![endif]-->
-    <head>
-        <title><?php the_title(); ?></title>
-        <meta charset="utf-8mb4">
-        <meta charset="<?php bloginfo('charset'); ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="profile" href="http://gmpg.org/xfn/11">
-        <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+<html class="ie ie8" <?php language_attributes(); ?>><![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html <?php language_attributes(); ?>><!--<![endif]-->
+<head>
+    <title><?php the_title(); ?></title>
+    <meta charset="utf-8mb4">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="57x57" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php bloginfo('template_directory'); ?>/assets/favicon/apple-touch-icon-180x180.png">
-        <link rel="icon" type="image/png" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="<?php bloginfo('template_directory'); ?>/assets/favicon/android-chrome-192x192.png" sizes="192x192">
-        <link rel="icon" type="image/png" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="<?php bloginfo('template_directory'); ?>/assets/favicon/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="<?php bloginfo('template_directory'); ?>/assets/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#000000">
-        <meta name="msapplication-TileImage" content="<?php bloginfo('template_directory'); ?>/assets/favicon/mstile-144x144.png">
-        <meta name="theme-color" content="#ffffff">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="<?php bloginfo( 'template_directory' ); ?>/assets/favicon/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.16.2/all.fine-uploader/fine-uploader-new.min.css">
 
-        <link href="<?php bloginfo('template_directory'); ?>/style/matt.css" rel="stylesheet">
+    <link href="<?php bloginfo( 'template_directory' ); ?>/style/matt.css" rel="stylesheet">
 
-        <!-- Styles -->
-        <?php $version = filemtime(get_theme_root() . '/' . get_template() . '/style/main.css'); ?>
-        <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/style/main.css?v=<?= $version; ?>">
+    <!-- Styles -->
+	<?php $version = filemtime( get_theme_root() . '/' . get_template() . '/style/main.css' ); ?>
+    <link rel="stylesheet" href="<?php bloginfo( 'template_directory' ); ?>/style/main.css?v=<?= $version; ?>">
 
     <!--[if lt IE 9]>
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/html5shiv.min.js"></script>
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/respond.min.js"></script>
-<![endif]-->
+    <![endif]-->
 
     <style>
         #trigger-upload {
@@ -86,17 +86,18 @@ if (ENV === 'DEV') {
         }
     </style>
 
-    <?php wp_head(); ?>
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
-    <header >
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<?php if ( checkRole() === 'admin' ): ?>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
