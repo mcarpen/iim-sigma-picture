@@ -8,20 +8,40 @@ function fetch_files() {
 
 	$args = array(
 		'post_type'      => 'files',
-		'posts_per_page' => 50,
+		'posts_per_page' => - 1,
 		's'              => $email,
 	);
 
 	$ajax_query = new WP_Query( $args );
 
+	$adminFiles = [];
+	$userFiles   = [];
+
 	if ( $ajax_query->have_posts() ) : while ( $ajax_query->have_posts() ) : $ajax_query->the_post();
-		$isAdmin = get_field( 'is_admin' );
+		$isAdmin  = get_field( 'is_admin' );
+		$fileName = get_field( 'name' );
+		$path     = get_field( 'path' );
+
 		if ( $isAdmin ) {
-			$fileName = get_field( 'name' );
-			echo '<li><a href="' . get_field('path') . '" target="_blank" title="Afficher">' . $fileName . '</a></li>';
+			$adminFiles[] = [
+				'name' => $fileName,
+				'path' => $path,
+			];
+		} else {
+			$userFiles[] = [
+				'name' => $fileName,
+				'path' => $path,
+			];
 		}
 	endwhile;
 	endif;
+
+	$data = [
+		$adminFiles,
+		$userFiles,
+	];
+
+	echo json_encode($data);
 
 	die();
 }

@@ -25,12 +25,7 @@
 						$fileName = get_field( 'name' );
 						?>
 						<tr>
-							<!-- TODO lien vers le profil de l'utilisateur en question -->
-                            <?php
-                            $emailParts = explode('@', get_the_title());
-                            $emailCut = $emailParts[0];
-                            ?>
-							<td><a href="<?php echo get_the_permalink(get_page_by_path($emailCut, OBJECT, 'accounts')); ?>"><?php the_title(); ?></a></td>
+							<td><?php the_title(); ?></a></td>
 							<td><a href="<?php the_field( 'path' ); ?>" download title="Télécharger ce fichier"><?= $fileName; ?></a></td>
 						</tr>
 						<?php

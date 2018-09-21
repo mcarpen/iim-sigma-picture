@@ -72,7 +72,7 @@ function createRoleClient() {
 add_action( 'init', 'createRoleClient' );
 
 function add_js_scripts() {
-	if ( is_page( get_page_by_path('upload-to-user') ) ) {
+	if ( is_page( get_page_by_path('find-user') ) ) {
 		wp_enqueue_script( 'fetch-files', get_template_directory_uri() . '/script/build/fetch-files.js', [ 'jquery' ], '1.0', true );
 
 		wp_localize_script( 'fetch-files', 'ajaxurl', admin_url( 'admin-ajax.php' ) );

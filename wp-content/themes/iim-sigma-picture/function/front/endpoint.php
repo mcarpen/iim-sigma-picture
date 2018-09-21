@@ -72,8 +72,6 @@ if ( $method == "POST" ) {
 		$result["uploadName"] = $uploader->getUploadName();
 	}
 
-	$email = $_POST['email'];
-
 	$email = htmlspecialchars( $_POST['user_email'] );
 
 	//Si il existe des données dans la barre pseudo et dans celle du mdp et dans celle de mail alors
@@ -112,18 +110,6 @@ if ( $method == "POST" ) {
 				update_field( 'tel', $h, 'user_' . $user->ID );
 
 				$url = home_url();
-
-				$emailParts = explode('@', $email);
-				$emailCut = $emailParts[0];
-
-				$post = [
-					'post_type'   => 'accounts',
-					'post_title'  => $email,
-					'post_name'   => $emailCut,
-					'post_status' => 'publish',
-				];
-
-				$postID = wp_insert_post( $post );
 
 				if ( ENV === 'PROD' ) {
 					sendMail( $email, $url );

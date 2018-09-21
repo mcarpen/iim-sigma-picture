@@ -1,5 +1,5 @@
 <footer class="">
-    <!-- your code HTML footer here -->Footer
+    <!-- your code HTML footer here -->
 </footer>
 
 <!-- Scripts -->
@@ -131,7 +131,6 @@ if ( is_page( get_page_by_path( 'dashboard' )->ID ) ):
                     autoUpload: false,
                     validation: {
                         allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw'],
-                        itemLimit: 3,
                         sizeLimit: 500000 * 1024, // 50 kB = 50 * 1024 bytes
                         allowEmpty: true
                     },
@@ -150,7 +149,7 @@ if ( is_page( get_page_by_path( 'dashboard' )->ID ) ):
 	<?php
 	endif;
 endif;
-if ( is_page( get_page_by_path( 'upload-to-user' )->ID ) ):
+if ( is_page( get_page_by_path( 'find-user' )->ID ) ):
 	?>
     <script>
         $(document).ready(function () {
@@ -168,26 +167,19 @@ if ( is_page( get_page_by_path( 'upload-to-user' )->ID ) ):
                 },
                 autoUpload: false,
                 validation: {
-                    allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw'],
-                    itemLimit: 3,
+                    allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw', 'pdf'],
                     sizeLimit: 500000 * 1024, // 50 kB = 50 * 1024 bytes
                     allowEmpty: true
                 },
                 callbacks: {
                     onProgress: function () {
                         $('#qq-form .btn-upload').attr('disabled', 'disabled');
-                        $('#qq-form select').attr('disabled', 'disabled');
                     },
                     onAllComplete: function () {
                         $('#qq-form .btn-upload').removeAttr('disabled');
-                        $('#qq-form').append('<a href="">Envoyer à un autre utilisateur</a>');
                     }
                 }
             });
-        });
-
-        $(document).on('click', '.btn-upload', function () {
-            $('#qq-form').find('input[type="email"]').attr('disabled', 'disabled');
         });
     </script>
 <?php endif; ?>
