@@ -70,7 +70,12 @@ if ( $method == "POST" ) {
 		$result["uploadName"] = $uploader->getUploadName();
 	}
 
-	$email = $_POST['email'];
+	if (checkRole() === 'admin') {
+	    $email = $_POST['email'];
+    } else {
+        $user = wp_get_current_user();
+	    $email = $user->user_email;
+    }
 
 	$post = array(
 		'post_type'   => 'files',
