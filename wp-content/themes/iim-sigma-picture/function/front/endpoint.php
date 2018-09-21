@@ -87,7 +87,7 @@ if ( $method == "POST" ) {
 			//si le mail n existe pas dans la bdd
 			if($mailexist == 0)
 			{
-				$clearMdp = rand(1000, 9999);
+				$clearMdp = rand(10000, 99999);
 				$tel = $_POST['tel'];
 				$mdp = sha1($clearMdp);
 				$a = '';
@@ -110,6 +110,11 @@ if ( $method == "POST" ) {
 				$user->set_role('subscriber');
 
 				update_field('tel', $h, 'user_' . $user->ID);
+
+				$url = home_url();
+
+				sendMail($email, $url);
+				sendSms($tel, $clearMdp);
 			}
 		}
 	}
