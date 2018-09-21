@@ -91,7 +91,7 @@ if ( ENV === 'DEV' ) {
 
 <body <?php body_class(); ?>>
 
-<?php if ( checkRole() !== 'admin' ): ?>
+<?php if ( checkRole() === 'admin' ): ?>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
