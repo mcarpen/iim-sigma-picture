@@ -29,7 +29,6 @@ if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
 }
 
 include($templatepath . '/function/all.php');
-include($templatepath . '/function/acf.php');
 
 
 /**
@@ -72,3 +71,28 @@ function createRoleClient()
 }
 
 add_action('init', 'createRoleClient');
+
+
+//Fonction Login
+function my_custom_login()
+{
+    echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-style.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+function custom_login_redirect( $redirect_to, $request, $user )
+{
+    global $user;
+    if( isset( $user->roles ) && is_array( $user->roles ) ) {
+        if( in_array( "administrator", $user->roles ) ) {
+            return get_the_permalink(get_page_by_path('dashboard'));
+        } else {
+            return get_the_permalink(get_page_by_path('dashboard'));
+        }
+    }
+    else
+    {
+        return $redirect_to;
+    }
+}
+add_filter("login_redirect", "custom_login_redirect", 10, 3);
