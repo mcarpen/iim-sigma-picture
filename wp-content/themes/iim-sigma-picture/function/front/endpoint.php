@@ -70,57 +70,50 @@ if ( $method == "POST" ) {
 		$result["uploadName"] = $uploader->getUploadName();
 	}
 
-	if (checkRole() === 'admin') {
-	    $email = $_POST['email'];
-    } else {
-        $user = wp_get_current_user();
-	    $email = $user->user_email;
-    }
-	$email = htmlspecialchars($_POST['user_email']);
+	$email = $_POST['email'];
+
+	$email = htmlspecialchars( $_POST['user_email'] );
 
 	//Si il existe des données dans la barre pseudo et dans celle du mdp et dans celle de mail alors
-	if(!empty($_POST['user_email']) AND !empty($_POST['tel']))
-	{
+	if ( ! empty( $_POST['user_email'] ) AND ! empty( $_POST['tel'] ) ) {
 		//si l email est valide alors
-		if(filter_var($email, FILTER_VALIDATE_EMAIL))
-		{
+		if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 			//on envoie le mail dans la bdd
-			$reqmail = $bdd->prepare("SELECT * FROM sp_users WHERE user_email = ?");
-			$reqmail->execute(array($email));
+			$reqmail = $bdd->prepare( "SELECT * FROM sp_users WHERE user_email = ?" );
+			$reqmail->execute( array( $email ) );
 			$mailexist = $reqmail->rowCount();
 			//si le mail n existe pas dans la bdd
-			if($mailexist == 0)
-			{
-				$clearMdp = rand(10000, 99999);
-				$tel = $_POST['tel'];
-				$mdp = sha1($clearMdp);
-				$a = '';
-				$b = '';
-				$c = time();
-				$d = '';
-				$e = 0;
-				$f = '';
-				$g = 'tel';
-				$h = htmlspecialchars($_POST['tel']);
+			if ( $mailexist == 0 ) {
+				$clearMdp = rand( 10000, 99999 );
+				$tel      = $_POST['tel'];
+				$mdp      = sha1( $clearMdp );
+				$a        = '';
+				$b        = '';
+				$c        = time();
+				$d        = '';
+				$e        = 0;
+				$f        = '';
+				$g        = 'tel';
+				$h        = htmlspecialchars( $_POST['tel'] );
 
 				//alors il se crée dans la bdd
-				$insertmbr = $bdd->prepare("INSERT INTO sp_users(user_login, user_email, user_pass, user_nicename, user_url, user_registered, user_activation_key, user_status, display_name) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-				$insertmbr->execute(array($email, $email, $mdp, $a, $b, $c, $d, $e, $f));
+				$insertmbr = $bdd->prepare( "INSERT INTO sp_users(user_login, user_email, user_pass, user_nicename, user_url, user_registered, user_activation_key, user_status, display_name) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)" );
+				$insertmbr->execute( array( $email, $email, $mdp, $a, $b, $c, $d, $e, $f ) );
 
-				$insertmbr2 = $bdd->prepare("INSERT INTO sp_usermeta(meta_key, meta_value) VALUES(?, ?)");
-				$insertmbr2->execute(array($g, $h));
+				$insertmbr2 = $bdd->prepare( "INSERT INTO sp_usermeta(meta_key, meta_value) VALUES(?, ?)" );
+				$insertmbr2->execute( array( $g, $h ) );
 
 				$user = get_user_by( 'email', $email );
-				$user->set_role('subscriber');
-				wp_set_password($clearMdp, $user->ID);
+				$user->set_role( 'subscriber' );
+				wp_set_password( $clearMdp, $user->ID );
 
-				update_field('tel', $h, 'user_' . $user->ID);
+				update_field( 'tel', $h, 'user_' . $user->ID );
 
 				$url = home_url();
 
-				if (ENV === 'PROD') {
-					sendMail($email, $url);
-					sendSms($tel, $clearMdp);
+				if ( ENV === 'PROD' ) {
+					sendMail( $email, $url );
+					sendSms( $tel, $clearMdp );
 				}
 			}
 		}
@@ -137,12 +130,12 @@ if ( $method == "POST" ) {
 	$url  = get_home_url();
 	$path = $url . '/wp-content/uploader/files/' . $result['uuid'] . '/' . $result['uploadName'];
 
-	update_field('name', $result['uploadName'], $postID);
-	update_field('path', $path, $postID);
-	if (checkRole() === 'admin') {
-		update_field('is_admin', 1, $postID);
+	update_field( 'name', $result['uploadName'], $postID );
+	update_field( 'path', $path, $postID );
+	if ( checkRole() === 'admin' ) {
+		update_field( 'is_admin', 1, $postID );
 	} else {
-		update_field('is_admin', 0, $postID);
+		update_field( 'is_admin', 0, $postID );
 	}
 
 	echo json_encode( $result );

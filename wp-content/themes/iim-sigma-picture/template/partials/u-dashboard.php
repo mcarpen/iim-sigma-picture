@@ -74,6 +74,13 @@
             <h4> Envoyer un fichier </h4>
             <form action="<?php echo get_template_directory_uri(); ?>/function/front/endpoint.php" id="qq-form" class="form-wrap">
                 <div class="form-group">
+                    <?php
+                    $user = wp_get_current_user();
+                    $email = $user->user_email;
+                    ?>
+                    <input for="user_email" type="email"  placeholder="Email" class="form-control" id="user_email" name="user_email" hidden value="<?= $email; ?>">
+                </div>
+                <div class="form-group">
                     <div id="fine-uploader-manual-trigger"></div>
                 </div>
                 <div class="form-group">
