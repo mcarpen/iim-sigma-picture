@@ -111,6 +111,7 @@
         });
     </script>
 <?php endif; ?>
+<!--
 <?php if ( is_page( get_page_by_path( 'upload-to-user' ) ) ): ?>
     <script>
         $(document).ready(function () {
@@ -151,5 +152,6 @@
         });
     </script>
 <?php endif; ?>
+-->
 </body>
 </html>
