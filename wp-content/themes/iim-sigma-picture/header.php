@@ -117,14 +117,3 @@ if (ENV === 'DEV') {
         </div>
     </nav>
 </header>
-
-<?php
-wp_nav_menu([
-    'theme_location'  => '',
-    'container'       => 'nav',
-    'menu_id'         => '',
-    'menu_class'      => '',
-    'container_id'    => '',
-    'container_class' => '',
-]);
-?>
