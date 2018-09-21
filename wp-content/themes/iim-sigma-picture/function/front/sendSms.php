@@ -3,7 +3,7 @@ include __DIR__ . "/../../../../../wp-load.php";
 
 function sendSms( $tel, $clearMDP ) {
 	$curl       = curl_init();
-	$smsContent = 'Mot de pase pour acceder a la plateforme sigma picture :';
+	$smsContent = 'Mot de passe pour accéder à la plateforme Sigma Picture :';
 	$smsContent .= ' ' . $clearMDP . '';
 	curl_setopt_array( $curl, [
 		CURLOPT_URL            => 'https://api.sendinblue.com/v3/transactionalSMS/sms',

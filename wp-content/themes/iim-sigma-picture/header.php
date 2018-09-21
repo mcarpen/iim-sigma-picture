@@ -122,6 +122,7 @@ if ( ENV === 'DEV' ) {
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <?php if (is_user_logged_in()): ?>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
@@ -129,6 +130,7 @@ if ( ENV === 'DEV' ) {
                     </li>
                 </ul>
             </div>
+            <?php endif; ?>
         </nav>
     </header>
 <?php endif; ?>
