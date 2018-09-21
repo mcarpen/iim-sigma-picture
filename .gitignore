@@ -21,6 +21,7 @@ bower_components/
 .idea/
 .sass-cache/
 /wp-content/uploader/files/*
+!/wp-content/uploader/files/readme.md
 
 
 #### Dot file
