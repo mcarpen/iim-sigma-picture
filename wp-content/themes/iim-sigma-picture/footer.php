@@ -75,44 +75,83 @@
     </div>
 </script>
 
-<?php if ( is_page( get_page_by_path( 'dashboard' ) ) ): ?>
-    <script>
-        $(document).ready(function () {
-            $('#fine-uploader-manual-trigger').fineUploader({
-                template: 'qq-template-manual-trigger',
-                debug: true,
-                request: {
-                    endpoint: '<?php echo bloginfo( 'url' ); ?>/wp-content/themes/iim-sigma-picture/function/front/endpoint.php'
-                },
-                thumbnails: {
-                    placeholders: {
-                        waitingPath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/waiting-generic.png',
-                        notAvailablePath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/not_available-generic.png'
-                    }
-                },
-                autoUpload: false,
-                validation: {
-                    allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw'],
-                    itemLimit: 3,
-                    sizeLimit: 500000 * 1024, // 50 kB = 50 * 1024 bytes
-                    allowEmpty: true
-                },
-                callbacks: {
-                    onProgress: function () {
-                        $('#qq-form .btn-upload').attr('disabled', 'disabled');
+<?php
+if ( is_page( get_page_by_path( 'dashboard' )->ID ) ):
+	if ( checkRole() === 'admin' ):
+		?>
+        <script>
+            $(document).ready(function () {
+                $('#fine-uploader-manual-trigger').fineUploader({
+                    template: 'qq-template-manual-trigger',
+                    debug: true,
+                    request: {
+                        endpoint: '<?php echo bloginfo( 'url' ); ?>/wp-content/themes/iim-sigma-picture/function/front/endpoint.php'
                     },
-                    onAllComplete: function () {
-                        $('#qq-form input[type="email"]').attr('disabled', 'disabled');
-                        $('#qq-form .btn-upload').attr('value', 'Ajouter de nouveaux fichiers').removeAttr('disabled');
-                        $('#qq-form').append('<a href="">Créer un nouveau compte</a>');
+                    thumbnails: {
+                        placeholders: {
+                            waitingPath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/waiting-generic.png',
+                            notAvailablePath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/not_available-generic.png'
+                        }
+                    },
+                    autoUpload: false,
+                    validation: {
+                        allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw', 'pdf'],
+                        itemLimit: 3,
+                        sizeLimit: 500000 * 1024, // 50 kB = 50 * 1024 bytes
+                        allowEmpty: true
+                    },
+                    callbacks: {
+                        onProgress: function () {
+                            $('#qq-form .btn-upload').attr('disabled', 'disabled');
+                        },
+                        onAllComplete: function () {
+                            $('#qq-form input[type="email"]').attr('disabled', 'disabled');
+                            $('#qq-form .btn-upload').attr('value', 'Ajouter de nouveaux fichiers').removeAttr('disabled');
+                            $('#qq-form').append('<a href="">Créer un nouveau compte</a>');
+                        }
                     }
-                }
+                });
             });
-        });
-    </script>
-<?php endif; ?>
-<!--
-<?php if ( is_page( get_page_by_path( 'upload-to-user' ) ) ): ?>
+        </script>
+	<?php else: ?>
+        <script>
+            $(document).ready(function () {
+                $('#fine-uploader-manual-trigger').fineUploader({
+                    template: 'qq-template-manual-trigger',
+                    debug: true,
+                    request: {
+                        endpoint: '<?php echo bloginfo( 'url' ); ?>/wp-content/themes/iim-sigma-picture/function/front/endpoint.php'
+                    },
+                    thumbnails: {
+                        placeholders: {
+                            waitingPath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/waiting-generic.png',
+                            notAvailablePath: '<?php echo bloginfo( 'url' ); ?>/wp-content/uploader/not_available-generic.png'
+                        }
+                    },
+                    autoUpload: false,
+                    validation: {
+                        allowedExtensions: ['jpeg', 'jpg', 'png', 'mov', 'mp4', 'raw'],
+                        itemLimit: 3,
+                        sizeLimit: 500000 * 1024, // 50 kB = 50 * 1024 bytes
+                        allowEmpty: true
+                    },
+                    callbacks: {
+                        onProgress: function () {
+                            $('#qq-form .btn-upload').attr('disabled', 'disabled');
+                        },
+                        onAllComplete: function () {
+                            $('#qq-form input[type="email"]').attr('disabled', 'disabled');
+                            $('#qq-form .btn-upload').attr('value', 'Ajouter de nouveaux fichiers').removeAttr('disabled');
+                        }
+                    }
+                });
+            });
+        </script>
+	<?php
+	endif;
+endif;
+if ( is_page( get_page_by_path( 'upload-to-user' )->ID ) ):
+	?>
     <script>
         $(document).ready(function () {
             $('#fine-uploader-manual-trigger').fineUploader({
@@ -152,6 +191,5 @@
         });
     </script>
 <?php endif; ?>
--->
 </body>
 </html>
