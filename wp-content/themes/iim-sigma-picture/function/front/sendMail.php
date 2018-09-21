@@ -1,14 +1,6 @@
 <?php
 include __DIR__ . "/../../../../../wp-load.php";
-/**
- * @param      $email
- * @param      $barName
- * @param      $cheersLink
- * @param      $voteID
- * @param bool $lost
- *
- * Used to send transactionnal email when someone wins
- */
+
 function sendMail($email, $url)
 {
     $curl = curl_init();
@@ -23,7 +15,7 @@ function sendMail($email, $url)
         CURLOPT_HTTPHEADER => [
             'Accept: application/json',
             'Content-Type: application/json',
-            'api-key: '. SENDINBLUE_APIKEY .'',
+            'api-key: ' . SENDINBLUE_APIKEY . '',
         ],
         CURLOPT_POSTFIELDS => '{"to":[{"name":"sigma-picture","email":"' . $email . '"}],"params":{"URL":"' . $url . '"},"sender":{"name":"sigma-picture","email":"footix@pronobar.fr"},"replyTo":{"email":"footix@pronobar.fr","name":"sigma-picture"},"templateId":7}',
     ]);
