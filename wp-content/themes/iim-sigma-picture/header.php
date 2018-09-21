@@ -2,6 +2,9 @@
 if (is_front_page() && is_user_logged_in()) {
     wp_redirect(get_the_permalink(get_page_by_path('dashboard')));
     exit;
+} elseif( ! is_front_page() && ! is_user_logged_in()) {
+    wp_redirect(home_url());
+    exit;
 }
 if (ENV === 'DEV') {
 	require __DIR__ . '/vendor/autoload.php';
