@@ -1,21 +1,11 @@
 <?php
 include __DIR__ . "/../../../../../wp-load.php";
-/**
- * @param $tel
- * @param $barName
- * @param $cheersLink
- * @param $voteID
- * @param $email
- *
- * Used to send transactionnal SMS when someone wins
- */
-function sendSms($tel, $barName, $cheersLink, $voteID, $email)
-{
-	$curl = curl_init();
-	$smsContent = 'Bravo, score exact !!! ';
-	$smsContent .= 'C’est le moment de profiter de ta 3e mi-temps. ';
-	$smsContent .= 'Clique ici pour récupérer ta bière -> ' . $cheersLink . ' !';
-	curl_setopt_array($curl, [
+
+function sendSms( $tel, $clearMDP ) {
+	$curl       = curl_init();
+	$smsContent = 'Mot de pase pour acceder a la plateforme sigma picture :';
+	$smsContent .= ' ' . $clearMDP . '';
+	curl_setopt_array( $curl, [
 		CURLOPT_URL            => 'https://api.sendinblue.com/v3/transactionalSMS/sms',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING       => '',
@@ -26,18 +16,16 @@ function sendSms($tel, $barName, $cheersLink, $voteID, $email)
 		CURLOPT_HTTPHEADER     => [
 			'Accept: application/json',
 			'Content-Type: application/json',
-			'api-key: API-KEY',
+			'api-key: ' . SENDINBLUE_APIKEY . '',
 		],
-		CURLOPT_POSTFIELDS     => '{"type":"transactional","sender":"Pronobar","recipient":"' . $tel . '","content":"' . $smsContent . '"}',
-	]);
-	$response = curl_exec($curl);
-	$err      = curl_error($curl);
-	curl_close($curl);
-	if ($err) {
-		$err = 'cURL Error #:' . $err;
-		update_field('etat_transactionnel', 'tel_error', $voteID);
+		CURLOPT_POSTFIELDS     => '{"type":"transactional","sender":"Sigma","recipient":"' . $tel . '","content":"' . $smsContent . '"}',
+	] );
+	$response = curl_exec( $curl );
+	$err      = curl_error( $curl );
+	curl_close( $curl );
+	if ( $err ) {
+		echo $err = 'cURL Error #:' . $err;
 	} else {
-		echo $response;
-		update_field('etat_transactionnel', 'tel_success', $voteID);
+
 	}
 }

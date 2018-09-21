@@ -76,12 +76,61 @@ if ( $method == "POST" ) {
         $user = wp_get_current_user();
 	    $email = $user->user_email;
     }
+	$email = htmlspecialchars($_POST['user_email']);
 
-	$post = array(
+	//Si il existe des données dans la barre pseudo et dans celle du mdp et dans celle de mail alors
+	if(!empty($_POST['user_email']) AND !empty($_POST['tel']))
+	{
+		//si l email est valide alors
+		if(filter_var($email, FILTER_VALIDATE_EMAIL))
+		{
+			//on envoie le mail dans la bdd
+			$reqmail = $bdd->prepare("SELECT * FROM sp_users WHERE user_email = ?");
+			$reqmail->execute(array($email));
+			$mailexist = $reqmail->rowCount();
+			//si le mail n existe pas dans la bdd
+			if($mailexist == 0)
+			{
+				$clearMdp = rand(10000, 99999);
+				$tel = $_POST['tel'];
+				$mdp = sha1($clearMdp);
+				$a = '';
+				$b = '';
+				$c = time();
+				$d = '';
+				$e = 0;
+				$f = '';
+				$g = 'tel';
+				$h = htmlspecialchars($_POST['tel']);
+
+				//alors il se crée dans la bdd
+				$insertmbr = $bdd->prepare("INSERT INTO sp_users(user_login, user_email, user_pass, user_nicename, user_url, user_registered, user_activation_key, user_status, display_name) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+				$insertmbr->execute(array($email, $email, $mdp, $a, $b, $c, $d, $e, $f));
+
+				$insertmbr2 = $bdd->prepare("INSERT INTO sp_usermeta(meta_key, meta_value) VALUES(?, ?)");
+				$insertmbr2->execute(array($g, $h));
+
+				$user = get_user_by( 'email', $email );
+				$user->set_role('subscriber');
+				wp_set_password($clearMdp, $user->ID);
+
+				update_field('tel', $h, 'user_' . $user->ID);
+
+				$url = home_url();
+
+				if (ENV === 'PROD') {
+					sendMail($email, $url);
+					sendSms($tel, $clearMdp);
+				}
+			}
+		}
+	}
+
+	$post = [
 		'post_type'   => 'files',
 		'post_title'  => $email,
 		'post_status' => 'publish',
-	);
+	];
 
 	$postID = wp_insert_post( $post );
 
@@ -90,8 +139,11 @@ if ( $method == "POST" ) {
 
 	update_field('name', $result['uploadName'], $postID);
 	update_field('path', $path, $postID);
-	// TODO gérer si envoi par un admin ou pas
-	update_field('is_admin', 0, $postID);
+	if (checkRole() === 'admin') {
+		update_field('is_admin', 1, $postID);
+	} else {
+		update_field('is_admin', 0, $postID);
+	}
 
 	echo json_encode( $result );
 } // for delete file requests
