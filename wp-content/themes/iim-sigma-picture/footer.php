@@ -1,5 +1,5 @@
 <footer class="">
-	<!-- your code HTML footer here -->Footer
+    <!-- your code HTML footer here -->Footer
 </footer>
 
 <!-- Scripts -->
@@ -75,7 +75,7 @@
     </div>
 </script>
 
-<?php if ( is_page( 10 ) ): ?>
+<?php if ( is_page( get_page_by_path( 'dashboard' ) ) ): ?>
     <script>
         $(document).ready(function () {
             $('#fine-uploader-manual-trigger').fineUploader({
@@ -111,7 +111,7 @@
         });
     </script>
 <?php endif; ?>
-<?php if ( is_page( 38 ) ): ?>
+<?php if ( is_page( get_page_by_path( 'upload-to-user' ) ) ): ?>
     <script>
         $(document).ready(function () {
             $('#fine-uploader-manual-trigger').fineUploader({
