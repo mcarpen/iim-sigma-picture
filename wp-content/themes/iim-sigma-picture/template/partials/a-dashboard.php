@@ -40,9 +40,12 @@
 		<div class="col-md-6">
 			<h4>Créer un nouvel utilisateur</h4>
 			<form action="<?php echo get_template_directory_uri(); ?>/function/front/endpoint.php" id="qq-form" class="form-wrap">
+                <div class="form-group">
+                    <input for="user_email" type="email"  placeholder="Email" class="form-control" id="user_email" name="user_email" required>
+                </div>
 				<div class="form-group">
-					<input type="email" id="email" name="email" class="form-control" required>
-				</div>
+                    <input for="tel" type="text"  placeholder="Format obligatoire : +33..." class="form-control" id="tel" name="tel" required>
+                </div>
 				<div class="form-group">
 					<div id="fine-uploader-manual-trigger"></div>
 				</div>
