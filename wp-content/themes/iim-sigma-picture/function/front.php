@@ -21,6 +21,10 @@ require_once('front/custom_url_login.php');
  * Custom theme
  */
 require_once('front/jquery.php');
+require_once('front/checkRole.php');
+require_once('front/sendMail.php');
+require_once('front/sendSms.php');
+//require_once('front/fetchUserFiles.php');
 //require_once('front/gf_msg_erreur.php');
 //require_once('front/gf_validation_telephone.php');
 //require_once('front/pagination.php');

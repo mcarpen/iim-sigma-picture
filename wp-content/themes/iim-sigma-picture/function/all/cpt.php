@@ -5,18 +5,18 @@ add_action('init', 'taxonomies', 0);
 
 function cpt()
 {
-    register_post_type('xxx',
-        array(
-            'labels'      => array(
-                'name'          => __('Xxx'),
-                'singular_name' => __('Xxx'),
-            ),
+    register_post_type('files',
+        [
+            'labels'      => [
+                'name'          => __('Files'),
+                'singular_name' => __('Files'),
+            ],
             'public'      => true,
-            'supports'    => array(), //'title', 'editor', 'thumbnail', 'author', 'excerpt', 'revisions', 'page-attributes'
-            'rewrite'     => array('slug' => 'xxx'),
-            'menu_icon'   => 'xxx',
-            'has_archive' => true,
-        )
+            'rewrite'     => false,
+            'menu_icon'   => 'dashicons-media-archive',
+            'has_archive' => false,
+	        'publicaly_queryable' => false,
+        ]
     );
 }
 
