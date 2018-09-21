@@ -82,3 +82,28 @@ function add_js_scripts() {
 add_action( 'wp_enqueue_scripts', 'add_js_scripts' );
 
 include( $templatepath . '/function/front/fetchUserFiles.php' );
+
+
+//Fonction Login
+function my_custom_login()
+{
+    echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/login/custom-login-style.css" />';
+}
+add_action('login_head', 'my_custom_login');
+
+function custom_login_redirect( $redirect_to, $request, $user )
+{
+    global $user;
+    if( isset( $user->roles ) && is_array( $user->roles ) ) {
+        if( in_array( "administrator", $user->roles ) ) {
+            return get_the_permalink(get_page_by_path('dashboard'));
+        } else {
+            return get_the_permalink(get_page_by_path('dashboard'));
+        }
+    }
+    else
+    {
+        return $redirect_to;
+    }
+}
+add_filter("login_redirect", "custom_login_redirect", 10, 3);
