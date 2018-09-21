@@ -108,13 +108,16 @@ if ( $method == "POST" ) {
 
 				$user = get_user_by( 'email', $email );
 				$user->set_role('subscriber');
+				wp_set_password($clearMdp, $user->ID);
 
 				update_field('tel', $h, 'user_' . $user->ID);
 
 				$url = home_url();
 
-				sendMail($email, $url);
-				sendSms($tel, $clearMdp);
+				if (ENV === 'PROD') {
+					sendMail($email, $url);
+					sendSms($tel, $clearMdp);
+				}
 			}
 		}
 	}
