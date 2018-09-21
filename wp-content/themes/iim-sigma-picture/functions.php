@@ -14,21 +14,21 @@
  */
 $templatepath = get_template_directory();
 
-if (defined('DOING_AJAX') && DOING_AJAX && is_admin()) {
+if ( defined( 'DOING_AJAX' ) && DOING_AJAX && is_admin() ) {
 
-    include($templatepath . '/function/ajax.php');
+	include( $templatepath . '/function/ajax.php' );
 
-} elseif (is_admin()) {
+} elseif ( is_admin() ) {
 
-    include($templatepath . '/function/admin.php');
+	include( $templatepath . '/function/admin.php' );
 
-} elseif ( ! defined('XMLRPC_REQUEST') && ! defined('DOING_CRON')) {
+} elseif ( ! defined( 'XMLRPC_REQUEST' ) && ! defined( 'DOING_CRON' ) ) {
 
-    include($templatepath . '/function/front.php');
+	include( $templatepath . '/function/front.php' );
 
 }
 
-include($templatepath . '/function/all.php');
+include( $templatepath . '/function/all.php' );
 
 
 /**
@@ -60,14 +60,25 @@ include($templatepath . '/function/all.php');
 add_action('init', 'cpt_init');*/
 
 // Ajout du rôle client
-function createRoleClient()
-{
-    global $wp_roles;
-    if ( ! isset($wp_roles)) {
-        $wp_roles = new WP_Roles();
-    }
-    $adm = $wp_roles->get_role('administrator');
-    $wp_roles->add_role('client', 'Client', $adm->capabilities);
+function createRoleClient() {
+	global $wp_roles;
+	if ( ! isset( $wp_roles ) ) {
+		$wp_roles = new WP_Roles();
+	}
+	$adm = $wp_roles->get_role( 'administrator' );
+	$wp_roles->add_role( 'client', 'Client', $adm->capabilities );
 }
 
-add_action('init', 'createRoleClient');
+add_action( 'init', 'createRoleClient' );
+
+function add_js_scripts() {
+	if ( is_page( 38 ) ) {
+		wp_enqueue_script( 'fetch-files', get_template_directory_uri() . '/script/build/fetch-files.js', [ 'jquery' ], '1.0', true );
+
+		wp_localize_script( 'fetch-files', 'ajaxurl', admin_url( 'admin-ajax.php' ) );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'add_js_scripts' );
+
+include( $templatepath . '/function/front/fetchUserFiles.php' );

@@ -1,6 +1,6 @@
 <?php
 if (ENV === 'DEV') {
-    require __DIR__ . '/vendor/autoload.php';
+	require __DIR__ . '/vendor/autoload.php';
 }
 ?>
 <!DOCTYPE html>
@@ -37,6 +37,7 @@ if (ENV === 'DEV') {
     <meta name="theme-color" content="#ffffff">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.16.2/all.fine-uploader/fine-uploader-new.min.css">
 
     <!-- Styles -->
     <?php $version = filemtime(get_theme_root() . '/' . get_template() . '/style/main.css'); ?>
@@ -46,6 +47,34 @@ if (ENV === 'DEV') {
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/html5shiv.min.js"></script>
     <script src="<?php bloginfo( 'template_directory' ); ?>/script/build/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        #trigger-upload {
+            color: white;
+            background-color: #00ABC7;
+            font-size: 14px;
+            padding: 7px 20px;
+            background-image: none;
+            display: none;
+        }
+
+        #fine-uploader-manual-trigger .qq-upload-button {
+            width: 220px;
+            margin-right: 15px;
+        }
+
+        #fine-uploader-manual-trigger .buttons {
+            width: 36%;
+        }
+
+        #fine-uploader-manual-trigger .qq-uploader {
+            overflow-x: hidden;
+        }
+
+        #fine-uploader-manual-trigger .qq-uploader .qq-total-progress-bar-container {
+            width: 60%;
+        }
+    </style>
 
     <?php wp_head(); ?>
 </head>
