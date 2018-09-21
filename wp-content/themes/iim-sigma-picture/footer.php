@@ -1,5 +1,5 @@
 <footer class="">
-    <!-- your code HTML footer here -->
+	<!-- your code HTML footer here -->Footer
 </footer>
 
 <!-- Scripts -->

@@ -1,0 +1,31 @@
+.pseudo{
+	text-align:center;
+	margin-top:20px;
+	width: 220px;
+	height: 30px;
+	font-size: 18px;
+}
+
+.motdepasse{
+	text-align:center;
+	margin-top:20px;
+	width: 220px;
+	height: 30px;
+	font-size: 18px;
+}
+
+.email{
+	text-align:center;
+	margin-top:20px;
+	width: 220px;
+	height: 30px;
+	font-size: 18px;
+}
+
+.inscrire{
+	text-align:center;
+	margin-top:20px;
+	width: 180px;
+	height: 28px;
+	font-size: 16px;
+}
