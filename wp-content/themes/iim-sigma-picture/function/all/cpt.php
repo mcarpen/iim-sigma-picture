@@ -12,12 +12,25 @@ function cpt()
                 'singular_name' => __('Files'),
             ],
             'public'      => true,
-            'rewrite'     => true,
+            'rewrite'     => false,
             'menu_icon'   => 'dashicons-media-archive',
             'has_archive' => false,
 	        'publicaly_queryable' => false,
         ]
     );
+
+	register_post_type('accounts',
+		[
+			'labels'      => [
+				'name'          => __('Comptes'),
+				'singular_name' => __('Comptes'),
+			],
+			'public'      => true,
+			'rewrite'     => [ 'slug' => 'compte' ],
+			'menu_icon'   => 'dashicons-admin-users',
+			'has_archive' => false,
+		]
+	);
 }
 
 function taxonomies()

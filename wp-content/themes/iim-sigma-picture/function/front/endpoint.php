@@ -1,5 +1,7 @@
 <?php
 include __DIR__ . "/../../../../../wp-load.php";
+
+$bdd = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . '', DB_USER, DB_PASSWORD);
 /**
  * PHP Server-Side Example for Fine Uploader (traditional endpoint handler).
  * Maintained by Widen Enterprises.
@@ -110,6 +112,18 @@ if ( $method == "POST" ) {
 				update_field( 'tel', $h, 'user_' . $user->ID );
 
 				$url = home_url();
+
+				$emailParts = explode('@', $email);
+				$emailCut = $emailParts[0];
+
+				$post = [
+					'post_type'   => 'accounts',
+					'post_title'  => $email,
+					'post_name'   => $emailCut,
+					'post_status' => 'publish',
+				];
+
+				$postID = wp_insert_post( $post );
 
 				if ( ENV === 'PROD' ) {
 					sendMail( $email, $url );
