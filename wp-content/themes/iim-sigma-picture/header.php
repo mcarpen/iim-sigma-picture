@@ -107,7 +107,7 @@ if (ENV === 'DEV') {
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a href="<?php echo wp_logout_url( home_url() ); ?>">Logout</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
